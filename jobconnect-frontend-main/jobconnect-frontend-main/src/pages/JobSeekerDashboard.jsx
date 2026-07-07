@@ -4,7 +4,7 @@ import api from '../services/api';
 import Loading from '../components/Loading';
 import StatusBadge from '../components/StatusBadge';
 
-const JobSeekerDashboard = () => {
+const GraduateDashboard = () => {
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -25,9 +25,9 @@ const JobSeekerDashboard = () => {
   return (
     <div>
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h1 className="h3 mb-0">Job Seeker Dashboard</h1>
-        <Link className="btn btn-primary" to="/jobs">
-          Browse Jobs
+        <h1 className="h3 mb-0">Graduate Dashboard</h1>
+        <Link className="btn btn-primary" to="/gigs">
+          Browse Gigs
         </Link>
       </div>
       {loading ? (
@@ -45,7 +45,7 @@ const JobSeekerDashboard = () => {
             ))}
           </div>
           <div className="card">
-            <div className="card-header bg-white fw-semibold">Recent Applications</div>
+            <div className="card-header fw-semibold">Recent Applications</div>
             <div className="table-responsive">
               <table className="table mb-0 align-middle">
                 <tbody>
@@ -69,4 +69,4 @@ const JobSeekerDashboard = () => {
   );
 };
 
-export default JobSeekerDashboard;
+export default GraduateDashboard;

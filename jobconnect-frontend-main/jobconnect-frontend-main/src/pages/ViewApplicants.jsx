@@ -13,7 +13,7 @@ const ViewApplicants = () => {
   const [error, setError] = useState('');
 
   const loadApplications = () => {
-    // The backend checks that this employer owns the job.
+    // The backend checks that this professional owns the gig.
     setLoading(true);
     api
       .get(`/applications/job/${id}`)
@@ -27,7 +27,7 @@ const ViewApplicants = () => {
   }, [id]);
 
   const updateStatus = async (applicationId, status) => {
-    // Employers update candidates through the controlled status list.
+    // Professionals update candidates through the controlled status list.
     setMessage('');
     setError('');
     try {
@@ -63,11 +63,11 @@ const ViewApplicants = () => {
               {applications.map((app) => (
                 <tr key={app.id}>
                   <td>
-                    <strong>{app.job_seeker_name}</strong>
+                    <strong>{app.graduate_name}</strong>
                     <div className="small text-secondary">{app.experience_level}</div>
                   </td>
                   <td>
-                    {app.job_seeker_email}
+                    {app.graduate_email}
                     <div className="small text-secondary">{app.phone}</div>
                   </td>
                   <td className="table-text">{app.skills}</td>

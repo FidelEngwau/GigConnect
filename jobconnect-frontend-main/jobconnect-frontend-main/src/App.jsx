@@ -7,14 +7,14 @@ import BrowseJobs from './pages/BrowseJobs';
 import JobDetails from './pages/JobDetails';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import JobSeekerDashboard from './pages/JobSeekerDashboard';
-import JobSeekerProfile from './pages/JobSeekerProfile';
+import GraduateDashboard from './pages/JobSeekerDashboard';
+import GraduateProfile from './pages/JobSeekerProfile';
 import MyApplications from './pages/MyApplications';
-import ApplyJob from './pages/ApplyJob';
-import EmployerDashboard from './pages/EmployerDashboard';
-import EmployerProfile from './pages/EmployerProfile';
+import ApplyGig from './pages/ApplyJob';
+import ProfessionalDashboard from './pages/EmployerDashboard';
+import ProfessionalProfile from './pages/EmployerProfile';
 import JobForm from './pages/JobForm';
-import MyJobs from './pages/MyJobs';
+import MyGigs from './pages/MyJobs';
 import ViewApplicants from './pages/ViewApplicants';
 import AdminDashboard from './pages/AdminDashboard';
 import ManageUsers from './pages/ManageUsers';
@@ -30,30 +30,30 @@ const App = () => (
     <Routes>
       {/* Public pages available to visitors and logged-in users. */}
       <Route path="/" element={<Home />} />
-      <Route path="/jobs" element={<BrowseJobs />} />
-      <Route path="/jobs/:id" element={<JobDetails />} />
+      <Route path="/gigs" element={<BrowseJobs />} />
+      <Route path="/gigs/:id" element={<JobDetails />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
-      {/* Job seeker routes. ProtectedRoute blocks unauthenticated users and wrong roles. */}
-      <Route element={<ProtectedRoute roles={['job_seeker']} />}>
-        <Route path="/jobs/:id/apply" element={<ApplyJob />} />
+      {/* Graduate routes. ProtectedRoute blocks unauthenticated users and wrong roles. */}
+      <Route element={<ProtectedRoute roles={['graduate']} />}>
+        <Route path="/gigs/:id/apply" element={<ApplyGig />} />
         <Route element={<DashboardLayout />}>
-          <Route path="/job-seeker" element={<JobSeekerDashboard />} />
-          <Route path="/job-seeker/profile" element={<JobSeekerProfile />} />
-          <Route path="/job-seeker/applications" element={<MyApplications />} />
+          <Route path="/graduate" element={<GraduateDashboard />} />
+          <Route path="/graduate/profile" element={<GraduateProfile />} />
+          <Route path="/graduate/applications" element={<MyApplications />} />
         </Route>
       </Route>
 
-      {/* Employer-only dashboard and job management routes. */}
-      <Route element={<ProtectedRoute roles={['employer']} />}>
+      {/* Professional-only dashboard and gig management routes. */}
+      <Route element={<ProtectedRoute roles={['professional']} />}>
         <Route element={<DashboardLayout />}>
-          <Route path="/employer" element={<EmployerDashboard />} />
-          <Route path="/employer/profile" element={<EmployerProfile />} />
-          <Route path="/employer/jobs" element={<MyJobs />} />
-          <Route path="/employer/jobs/new" element={<JobForm />} />
-          <Route path="/employer/jobs/:id/edit" element={<JobForm mode="edit" />} />
-          <Route path="/employer/jobs/:id/applicants" element={<ViewApplicants />} />
+          <Route path="/professional" element={<ProfessionalDashboard />} />
+          <Route path="/professional/profile" element={<ProfessionalProfile />} />
+          <Route path="/professional/gigs" element={<MyGigs />} />
+          <Route path="/professional/gigs/new" element={<JobForm />} />
+          <Route path="/professional/gigs/:id/edit" element={<JobForm mode="edit" />} />
+          <Route path="/professional/gigs/:id/applicants" element={<ViewApplicants />} />
         </Route>
       </Route>
 
@@ -62,7 +62,7 @@ const App = () => (
         <Route element={<DashboardLayout />}>
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/users" element={<ManageUsers />} />
-          <Route path="/admin/jobs" element={<ManageJobs />} />
+          <Route path="/admin/gigs" element={<ManageJobs />} />
           <Route path="/admin/applications" element={<ManageApplications />} />
         </Route>
       </Route>

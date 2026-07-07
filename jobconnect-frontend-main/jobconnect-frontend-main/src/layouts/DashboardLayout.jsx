@@ -3,22 +3,22 @@ import { useAuth } from '../context/AuthContext';
 
 // Each role gets a different sidebar menu.
 const navItems = {
-  job_seeker: [
-    ['Overview', '/job-seeker'],
-    ['Profile', '/job-seeker/profile'],
-    ['Applications', '/job-seeker/applications'],
-    ['Browse Jobs', '/jobs']
+  graduate: [
+    ['Dashboard', '/graduate'],
+    ['Profile', '/graduate/profile'],
+    ['Applications', '/graduate/applications'],
+    ['Browse Gigs', '/gigs']
   ],
-  employer: [
-    ['Overview', '/employer'],
-    ['Company Profile', '/employer/profile'],
-    ['Post Job', '/employer/jobs/new'],
-    ['My Jobs', '/employer/jobs']
+  professional: [
+    ['Dashboard', '/professional'],
+    ['Company Profile', '/professional/profile'],
+    ['Post Gig', '/professional/gigs/new'],
+    ['My Gigs', '/professional/gigs']
   ],
   admin: [
     ['Overview', '/admin'],
     ['Users', '/admin/users'],
-    ['Jobs', '/admin/jobs'],
+    ['Gigs', '/admin/gigs'],
     ['Applications', '/admin/applications']
   ]
 };

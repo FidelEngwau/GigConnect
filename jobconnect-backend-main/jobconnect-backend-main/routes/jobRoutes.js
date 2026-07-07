@@ -15,8 +15,9 @@ const router = express.Router();
 // Public job browsing. The controller only returns open jobs for public users.
 router.get('/', listJobs);
 
-// Must be declared before /:id so "employer/my-jobs" is not treated as an id.
+// Must be declared before /:id so "/employer/my-jobs" and "/professional/my-gigs" are not treated as ids.
 router.get('/employer/my-jobs', protect, authorize('employer'), employerJobs);
+router.get('/professional/my-gigs', protect, authorize('employer'), employerJobs);
 router.get('/:id', getJob);
 
 // Employers create jobs. Admins can still moderate jobs through PUT/DELETE below.

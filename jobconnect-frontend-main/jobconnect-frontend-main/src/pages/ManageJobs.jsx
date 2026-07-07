@@ -25,7 +25,7 @@ const ManageJobs = () => {
   }, []);
 
   const removeJob = async (id) => {
-    // Removing inappropriate posts uses the shared DELETE /api/jobs/:id endpoint.
+    // Removing inappropriate posts uses the shared DELETE /api/gigs/:id endpoint.
     if (!window.confirm('Remove this job post?')) return;
     setMessage('');
     setError('');
@@ -43,7 +43,7 @@ const ManageJobs = () => {
   return (
     <div className="card">
       <div className="card-body">
-        <h1 className="h3 mb-3">Manage Jobs</h1>
+        <h1 className="h3 mb-3">Manage Gigs</h1>
         <AlertMessage type="success" message={message} />
         <AlertMessage message={error} />
         <div className="table-responsive">

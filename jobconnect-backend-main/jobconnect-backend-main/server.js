@@ -58,6 +58,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/jobs', jobRoutes);
+app.use('/api/gigs', jobRoutes);  // Alias for frontend using new terminology
 app.use('/api/applications', applicationRoutes);
 app.use('/api/admin', adminRoutes);
 

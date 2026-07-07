@@ -3,7 +3,7 @@ import api from '../services/api';
 import AlertMessage from '../components/AlertMessage';
 import Loading from '../components/Loading';
 
-const EmployerProfile = () => {
+const ProfessionalProfile = () => {
   const [form, setForm] = useState({
     company_name: '',
     company_description: '',
@@ -41,7 +41,7 @@ const EmployerProfile = () => {
     setError('');
     try {
       // PUT performs an upsert on the backend: create if missing, update if present.
-      await api.put('/profile/employer', form);
+      await api.put('/profile/professional', form);
       setMessage('Company profile saved successfully');
     } catch (err) {
       setError(err.response?.data?.message || 'Could not save profile');
@@ -88,4 +88,4 @@ const EmployerProfile = () => {
   );
 };
 
-export default EmployerProfile;
+export default ProfessionalProfile;

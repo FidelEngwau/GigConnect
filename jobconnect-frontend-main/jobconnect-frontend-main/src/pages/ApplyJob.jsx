@@ -4,7 +4,7 @@ import api from '../services/api';
 import AlertMessage from '../components/AlertMessage';
 import Loading from '../components/Loading';
 
-const ApplyJob = () => {
+const ApplyGig = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [job, setJob] = useState(null);
@@ -15,9 +15,9 @@ const ApplyJob = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    // Show the job summary above the application form.
+    // Show the gig summary above the application form.
     api
-      .get(`/jobs/${id}`)
+      .get(`/gigs/${id}`)
       .then((res) => setJob(res.data.job))
       .catch((err) => setError(err.response?.data?.message || 'Could not load job'))
       .finally(() => setLoading(false));
@@ -47,7 +47,7 @@ const ApplyJob = () => {
     <main className="container py-4">
       <form className="card form-card" onSubmit={handleSubmit}>
         <div className="card-body">
-          <Link to={`/jobs/${id}`} className="small">Back to job</Link>
+          <Link to={`/gigs/${id}`} className="small">Back to gig</Link>
           <h1 className="h3 mt-2">Apply for {job?.title}</h1>
           <p className="text-secondary">{job?.company_name}</p>
           <AlertMessage message={error} />
@@ -75,4 +75,4 @@ const ApplyJob = () => {
   );
 };
 
-export default ApplyJob;
+export default ApplyGig;

@@ -32,8 +32,8 @@ const AppNavbar = () => {
         <div className="collapse navbar-collapse" id="mainNav">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <NavLink className="nav-link" to="/jobs">
-                Browse Jobs
+              <NavLink className="nav-link" to="/gigs">
+                Browse Gigs
               </NavLink>
             </li>
             {user && (

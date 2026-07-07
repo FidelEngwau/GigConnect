@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import api from '../services/api';
 import Loading from '../components/Loading';
 
-const EmployerDashboard = () => {
+const ProfessionalDashboard = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -21,9 +21,9 @@ const EmployerDashboard = () => {
   return (
     <div>
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h1 className="h3 mb-0">Employer Dashboard</h1>
-        <Link className="btn btn-primary" to="/employer/jobs/new">
-          Post Job
+        <h1 className="h3 mb-0">Professional Dashboard</h1>
+        <Link className="btn btn-primary" to="/professional/gigs/new">
+          Post Gig
         </Link>
       </div>
       {loading ? (
@@ -32,14 +32,14 @@ const EmployerDashboard = () => {
         <>
           <div className="row g-3 mb-4">
             <div className="col-md-6">
-              <div className="stat-card"><span>Total jobs</span><strong>{jobs.length}</strong></div>
+              <div className="stat-card"><span>Total gigs</span><strong>{jobs.length}</strong></div>
             </div>
             <div className="col-md-6">
-              <div className="stat-card"><span>Open jobs</span><strong>{open}</strong></div>
+              <div className="stat-card"><span>Open gigs</span><strong>{open}</strong></div>
             </div>
           </div>
           <div className="card">
-            <div className="card-header bg-white fw-semibold">Latest Jobs</div>
+            <div className="card-header fw-semibold">Latest Gigs</div>
             <div className="table-responsive">
               <table className="table mb-0 align-middle">
                 <tbody>
@@ -50,7 +50,7 @@ const EmployerDashboard = () => {
                       <td>{job.status}</td>
                     </tr>
                   ))}
-                  {!jobs.length && <tr><td className="text-secondary">No jobs posted yet.</td></tr>}
+                  {!jobs.length && <tr><td className="text-primary">No gigs posted yet.</td></tr>}
                 </tbody>
               </table>
             </div>
@@ -61,4 +61,4 @@ const EmployerDashboard = () => {
   );
 };
 
-export default EmployerDashboard;
+export default ProfessionalDashboard;

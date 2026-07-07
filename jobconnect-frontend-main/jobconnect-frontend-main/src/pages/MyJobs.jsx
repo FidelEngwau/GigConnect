@@ -27,12 +27,12 @@ const MyJobs = () => {
 
   const deleteJob = async (id) => {
     // Browser confirmation prevents accidental deletion.
-    if (!window.confirm('Delete this job post?')) return;
+    if (!window.confirm('Delete this gig post?')) return;
     setMessage('');
     setError('');
     try {
       await api.delete(`/jobs/${id}`);
-      setMessage('Job deleted');
+      setMessage('Gig deleted');
       loadJobs();
     } catch (err) {
       setError(err.response?.data?.message || 'Could not delete job');
@@ -44,8 +44,8 @@ const MyJobs = () => {
   return (
     <div>
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h1 className="h3 mb-0">My Jobs</h1>
-        <Link className="btn btn-primary" to="/employer/jobs/new">Post Job</Link>
+        <h1 className="h3 mb-0">My Gigs</h1>
+        <Link className="btn btn-primary" to="/professional/gigs/new">Post Gig</Link>
       </div>
       <AlertMessage type="success" message={message} />
       <AlertMessage message={error} />
@@ -56,8 +56,8 @@ const MyJobs = () => {
               job={job}
               actions={
                 <>
-                  <Link className="btn btn-outline-primary btn-sm" to={`/employer/jobs/${job.id}/edit`}>Edit</Link>
-                  <Link className="btn btn-outline-secondary btn-sm" to={`/employer/jobs/${job.id}/applicants`}>Applicants</Link>
+                  <Link className="btn btn-outline-primary btn-sm" to={`/professional/gigs/${job.id}/edit`}>Edit</Link>
+                  <Link className="btn btn-outline-secondary btn-sm" to={`/professional/gigs/${job.id}/applicants`}>Applicants</Link>
                   <button className="btn btn-outline-danger btn-sm" onClick={() => deleteJob(job.id)}>Delete</button>
                 </>
               }

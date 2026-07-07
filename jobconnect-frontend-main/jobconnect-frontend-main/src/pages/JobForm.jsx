@@ -58,7 +58,7 @@ const JobForm = ({ mode = 'create' }) => {
       } else {
         await api.post('/jobs', form);
       }
-      navigate('/employer/jobs');
+      navigate('/professional/gigs');
     } catch (err) {
       setError(err.response?.data?.message || 'Could not save job');
     } finally {
@@ -79,7 +79,7 @@ const JobForm = ({ mode = 'create' }) => {
             <input className="form-control" required value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
           </div>
           <div className="col-md-4">
-            <label className="form-label">Job type</label>
+            <label className="form-label">Gig type</label>
             <select className="form-select" value={form.job_type} onChange={(e) => setForm({ ...form, job_type: e.target.value })}>
               <option>Full-time</option>
               <option>Part-time</option>

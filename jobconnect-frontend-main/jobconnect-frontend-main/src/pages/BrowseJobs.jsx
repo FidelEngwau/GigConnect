@@ -38,8 +38,8 @@ const BrowseJobs = () => {
     <main className="container py-4">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <div>
-          <h1 className="h3 mb-1">Browse Jobs</h1>
-          <p className="text-secondary mb-0">Search open roles by keyword, company, location, or job type.</p>
+          <h1 className="h3 mb-1">Browse Gigs</h1>
+          <p className="text-secondary mb-0">Search open gigs by keyword, company, location, or gig type.</p>
         </div>
       </div>
       <form className="filter-bar mb-4" onSubmit={handleSubmit}>

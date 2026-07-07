@@ -30,7 +30,7 @@ const Home = () => {
                 through verified gigs and an easy-to-use workspace.
               </p>
               <div className="d-flex flex-wrap gap-2">
-                <Link to="/jobs" className="btn btn-primary btn-lg">
+                <Link to="/gigs" className="btn btn-primary btn-lg">
                   Browse Gigs
                 </Link>
                 <Link to="/register" className="btn btn-outline-primary btn-lg">
@@ -60,8 +60,8 @@ const Home = () => {
       {/* Recent jobs reuse the same JobCard component used by the browse page. */}
       <section className="container py-5">
         <div className="d-flex justify-content-between align-items-center mb-3">
-          <h2 className="h4 mb-0">Recent Openings</h2>
-          <Link to="/jobs" className="btn btn-sm btn-outline-primary">
+          <h2 className="h4 mb-0">Recent Gigs</h2>
+          <Link to="/gigs" className="btn btn-sm btn-outline-primary">
             View All
           </Link>
         </div>

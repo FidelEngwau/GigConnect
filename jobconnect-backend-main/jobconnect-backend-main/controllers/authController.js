@@ -4,7 +4,14 @@ const pool = require('../config/db');
 
 // Public registration intentionally allows only normal users.
 // Admin users should be created by seed data or a trusted database/admin process.
-const allowedRoles = new Set(['employer', 'job_seeker']);
+const allowedRoles = new Set(['employer', 'job_seeker', 'professional', 'graduate']);
+
+// Map frontend role names to backend database role names for backwards compatibility
+const normalizeRole = (role) => {
+  if (role === 'professional') return 'employer';
+  if (role === 'graduate') return 'job_seeker';
+  return role;
+};
 
 // JWTs store the minimum identity needed by the API: user id and role.
 const signToken = (user) =>
@@ -32,12 +39,15 @@ const register = async (req, res) => {
   }
 
   if (!allowedRoles.has(role)) {
-    return res.status(400).json({ message: 'Registration role must be employer or job_seeker' });
+    return res.status(400).json({ message: 'Registration role must be professional, graduate, employer, or job_seeker' });
   }
 
   if (password.length < 6) {
     return res.status(400).json({ message: 'Password must be at least 6 characters' });
   }
+
+  // Normalize role name for database storage
+  const dbRole = normalizeRole(role);
 
   // Transactions keep user creation and profile creation together.
   // If one insert fails, the whole registration is rolled back.
@@ -56,11 +66,11 @@ const register = async (req, res) => {
     const hash = await bcrypt.hash(password, 10);
     const [result] = await connection.query(
       'INSERT INTO users (name, email, password, role, status) VALUES (?, ?, ?, ?, ?)',
-      [name, email, hash, role, 'active']
+      [name, email, hash, dbRole, 'active']
     );
 
     // Create an empty role-specific profile so dashboards have a record to edit immediately.
-    if (role === 'employer') {
+    if (dbRole === 'employer') {
       await connection.query(
         'INSERT INTO employer_profiles (user_id, company_name, company_description, industry, location, phone, website) VALUES (?, ?, ?, ?, ?, ?, ?)',
         [result.insertId, `${name}'s Company`, '', '', '', '', '']

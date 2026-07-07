@@ -3,7 +3,7 @@ import api, { uploadUrl } from '../services/api';
 import AlertMessage from '../components/AlertMessage';
 import Loading from '../components/Loading';
 
-const JobSeekerProfile = () => {
+const GraduateProfile = () => {
   const [form, setForm] = useState({
     phone: '',
     location: '',
@@ -45,7 +45,7 @@ const JobSeekerProfile = () => {
     Object.entries(form).forEach(([key, value]) => data.append(key, value));
     if (cv) data.append('cv', cv);
     try {
-      const res = await api.put('/profile/job-seeker', data);
+      const res = await api.put('/profile/graduate', data);
       setCurrentCv(res.data.profile.cv_file || '');
       setMessage('Profile saved successfully');
     } catch (err) {
@@ -58,7 +58,7 @@ const JobSeekerProfile = () => {
   return (
     <form className="card form-card" onSubmit={handleSubmit}>
       <div className="card-body">
-        <h1 className="h3 mb-3">Job Seeker Profile</h1>
+        <h1 className="h3 mb-3">Graduate Profile</h1>
         <AlertMessage type="success" message={message} />
         <AlertMessage message={error} />
         <div className="row g-3">
@@ -94,4 +94,4 @@ const JobSeekerProfile = () => {
   );
 };
 
-export default JobSeekerProfile;
+export default GraduateProfile;

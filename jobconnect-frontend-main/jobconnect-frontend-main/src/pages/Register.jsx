@@ -7,7 +7,7 @@ import AlertMessage from '../components/AlertMessage';
 const Register = () => {
   const { register } = useAuth();
   const navigate = useNavigate();
-  const [form, setForm] = useState({ name: '', email: '', password: '', role: 'job_seeker' });
+  const [form, setForm] = useState({ name: '', email: '', password: '', role: 'graduate' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -62,8 +62,8 @@ const Register = () => {
           value={form.role}
           onChange={(e) => setForm({ ...form, role: e.target.value })}
         >
-          <option value="job_seeker">Job Seeker</option>
-          <option value="employer">Employer</option>
+          <option value="graduate">Graduate</option>
+          <option value="professional">Professional</option>
         </select>
         <button className="btn btn-primary w-100" disabled={loading}>
           {loading ? 'Creating account...' : 'Register'}

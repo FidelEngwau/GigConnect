@@ -8,7 +8,7 @@ const ManageApplications = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Admins can view all applications across jobs and companies.
+    // Admins can view all applications across gigs and companies.
     api
       .get('/admin/applications')
       .then((res) => setApplications(res.data.applications))
@@ -36,8 +36,8 @@ const ManageApplications = () => {
               {applications.map((app) => (
                 <tr key={app.id}>
                   <td>
-                    {app.job_seeker_name}
-                    <div className="small text-secondary">{app.job_seeker_email}</div>
+                    {app.graduate_name}
+                    <div className="small text-secondary">{app.graduate_email}</div>
                   </td>
                   <td>{app.job_title}</td>
                   <td>{app.company_name}</td>

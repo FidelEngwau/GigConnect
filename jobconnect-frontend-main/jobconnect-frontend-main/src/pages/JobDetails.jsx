@@ -14,9 +14,9 @@ const JobDetails = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    // Load one job based on the :id route parameter.
+    // Load one gig based on the :id route parameter.
     api
-      .get(`/jobs/${id}`)
+      .get(`/gigs/${id}`)
       .then((res) => setJob(res.data.job))
       .catch((err) => setError(err.response?.data?.message || 'Could not load job'))
       .finally(() => setLoading(false));
@@ -41,7 +41,7 @@ const JobDetails = () => {
           <div className="fw-semibold">{job.salary_range || 'Salary not specified'}</div>
           <div className="small text-secondary mb-3">Deadline: {String(job.deadline).slice(0, 10)}</div>
           {user?.role === 'job_seeker' ? (
-            <Link className="btn btn-primary" to={`/jobs/${job.id}/apply`}>
+            <Link className="btn btn-primary" to={`/gigs/${job.id}/apply`}>
               Apply Now
             </Link>
           ) : !user ? (

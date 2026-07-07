@@ -4,7 +4,7 @@
   --gc-surface-soft: rgba(8, 16, 42, 0.92);
   --gc-primary: #36ff5c;
   --gc-primary-strong: #20d328;
-  --gc-muted: #a6b6d8;
+  --gc-muted: rgba(54, 255, 92, 0.82);
   --gc-border: rgba(255, 255, 255, 0.10);
   --gc-text: #eef2ff;
   --gc-input: rgba(255, 255, 255, 0.08);
@@ -129,7 +129,7 @@ a {
 }
 
 .form-label {
-  color: #cfd9ff;
+  color: var(--gc-primary);
 }
 
 .form-control,
@@ -142,8 +142,7 @@ a {
 }
 
 .form-control::placeholder {
-  color: rgba(255, 255, 255, 0.55);
-}
+  color: rgba(54, 255, 92, 0.65);
 
 .form-control:focus,
 .form-select:focus {
@@ -215,10 +214,85 @@ a {
   display: block;
   font-size: 2rem;
   line-height: 1.2;
+  color: var(--gc-primary);
 }
 
-.preline {
-  white-space: pre-line;
+.admin-table-card {
+  background: var(--gc-surface);
+  border: 1px solid rgba(54, 255, 92, 0.14);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.admin-stats-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-stats-table th,
+.admin-stats-table td {
+  border-bottom: 1px solid rgba(54, 255, 92, 0.12);
+  padding: 1.25rem 1.5rem;
+}
+
+.admin-stats-table th {
+  width: 60%;
+  color: var(--gc-primary);
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+}
+
+.admin-stats-table td {
+  color: var(--gc-primary);
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: right;
+}
+
+.admin-stats-table tr:last-child th,
+.admin-stats-table tr:last-child td {
+  border-bottom: none;
+}
+
+.card-header {
+  background: rgba(8, 16, 42, 0.92) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: var(--gc-primary) !important;
+}
+
+.card-header.bg-white {
+  background: rgba(8, 16, 42, 0.92) !important;
+  color: var(--gc-primary) !important;
+}
+
+.text-secondary,
+.text-muted {
+  color: var(--gc-primary) !important;
+}
+
+.text-secondary small,
+.text-muted small,
+.text-secondary.small,
+.text-muted.small {
+  color: rgba(54, 255, 92, 0.95) !important;
+}
+
+.table {
+  color: var(--gc-text);
+}
+
+.table td,
+.table th {
+  color: var(--gc-primary);
+  background: rgba(10, 20, 46, 0.94);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.table thead th {
+  color: var(--gc-primary);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .table-text {
