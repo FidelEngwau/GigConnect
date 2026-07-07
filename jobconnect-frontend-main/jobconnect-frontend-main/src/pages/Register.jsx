@@ -29,7 +29,8 @@ const Register = () => {
   return (
     <main className="auth-page">
       <form className="auth-card" onSubmit={handleSubmit}>
-        <h1 className="h3 mb-3">Create Account</h1>
+        <h1 className="h3 mb-2">Sign up for an account</h1>
+        <p className="text-secondary small mb-3">Enter your details to create your GigConnect account.</p>
         <AlertMessage message={error} />
         <label className="form-label">Full name</label>
         <input

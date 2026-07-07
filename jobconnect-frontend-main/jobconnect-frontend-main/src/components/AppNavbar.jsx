@@ -15,8 +15,8 @@ const AppNavbar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-white border-bottom sticky-top">
       <div className="container">
-        <Link className="navbar-brand fw-bold text-primary" to="/">
-          JobConnect
+        <Link className="navbar-brand fw-bold" to="/">
+          GigConnect
         </Link>
         <button
           className="navbar-toggler"

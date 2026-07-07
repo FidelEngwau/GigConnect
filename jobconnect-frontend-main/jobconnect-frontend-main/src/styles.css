@@ -1,46 +1,90 @@
 :root {
-  /* Shared design tokens keep colors consistent across the app. */
-  --jc-primary: #2557d6;
-  --jc-ink: #172033;
-  --jc-muted: #667085;
-  --jc-surface: #f5f7fb;
-  --jc-border: #d9e0ea;
+  --gc-bg: #050c24;
+  --gc-surface: rgba(10, 20, 46, 0.94);
+  --gc-surface-soft: rgba(8, 16, 42, 0.92);
+  --gc-primary: #36ff5c;
+  --gc-primary-strong: #20d328;
+  --gc-muted: #a6b6d8;
+  --gc-border: rgba(255, 255, 255, 0.10);
+  --gc-text: #eef2ff;
+  --gc-input: rgba(255, 255, 255, 0.08);
 }
 
 body {
-  /* Bootstrap handles most component styling; these rules set the product look. */
-  background: var(--jc-surface);
-  color: var(--jc-ink);
+  background: radial-gradient(circle at top, rgba(54, 255, 92, 0.08), transparent 28%),
+    linear-gradient(180deg, #040a18 0%, #070f28 100%);
+  color: var(--gc-text);
+  min-height: 100vh;
 }
 
 a {
   text-decoration: none;
+  color: inherit;
+}
+
+.navbar {
+  background: rgba(4, 10, 26, 0.96);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.navbar-brand {
+  color: var(--gc-primary) !important;
+}
+
+.navbar .nav-link {
+  color: rgba(238, 242, 255, 0.78);
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: var(--gc-primary);
+}
+
+.navbar-toggler-icon {
+  filter: invert(1) brightness(1.4);
 }
 
 .btn-primary {
-  background: var(--jc-primary);
-  border-color: var(--jc-primary);
+  background: var(--gc-primary);
+  border-color: transparent;
+  color: #071026;
+  box-shadow: 0 18px 40px rgba(54, 255, 92, 0.18);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: #2fe14f;
+}
+
+.btn-outline-primary {
+  color: var(--gc-primary);
+  background: transparent;
+  border-color: rgba(54, 255, 92, 0.30);
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  background: rgba(54, 255, 92, 0.08);
+  border-color: var(--gc-primary);
 }
 
 .text-primary {
-  color: var(--jc-primary) !important;
+  color: var(--gc-primary) !important;
 }
 
 .hero-section {
-  /* The home hero uses a restrained background so job information stays readable. */
-  background:
-    linear-gradient(120deg, rgba(37, 87, 214, 0.12), rgba(20, 184, 166, 0.10)),
-    #ffffff;
-  border-bottom: 1px solid var(--jc-border);
+  background: linear-gradient(180deg, rgba(5, 11, 32, 0.94), rgba(7, 18, 50, 0.96)),
+    radial-gradient(circle at top right, rgba(54, 255, 92, 0.16), transparent 35%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .hero-panel {
-  /* Dark panel creates contrast for the quick metric summary. */
-  background: #0f172a;
-  color: #ffffff;
-  border-radius: 8px;
-  padding: 1.25rem;
-  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.18);
+  background: rgba(8, 16, 42, 0.94);
+  color: #f9fbff;
+  border: 1px solid rgba(54, 255, 92, 0.18);
+  border-radius: 24px;
+  padding: 1.75rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
 }
 
 .metric-row {
@@ -48,59 +92,95 @@ a {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .metric-row:last-child {
-  border-bottom: 0;
+  border-bottom: none;
+}
+
+.metric-row span {
+  color: var(--gc-muted);
 }
 
 .metric-row strong {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
 }
 
 .auth-page {
-  /* Centers login/register forms vertically and horizontally. */
   min-height: calc(100vh - 57px);
   display: grid;
   place-items: center;
-  padding: 2rem 1rem;
+  padding: 2.5rem 1rem;
+  background: radial-gradient(circle at top, rgba(54, 255, 92, 0.06), transparent 22%);
 }
 
 .auth-card {
-  width: min(100%, 440px);
-  background: #ffffff;
-  border: 1px solid var(--jc-border);
-  border-radius: 8px;
-  padding: 1.5rem;
+  width: min(100%, 460px);
+  background: rgba(8, 16, 42, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 28px;
+  padding: 2rem;
+  box-shadow: 0 26px 55px rgba(0, 0, 0, 0.28);
+}
+
+.auth-card h1 {
+  color: #f6f8ff;
+}
+
+.form-label {
+  color: #cfd9ff;
+}
+
+.form-control,
+.form-select {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #eef2ff;
+  border-radius: 14px;
+  padding: 0.95rem 1rem;
+}
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--gc-primary);
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(54, 255, 92, 0.16);
+}
+
+.alert {
+  border-radius: 14px;
 }
 
 .filter-bar {
-  /* CSS grid keeps the search controls aligned on desktop. */
   display: grid;
   grid-template-columns: 2fr 1fr 180px auto;
   gap: 0.75rem;
-  background: #ffffff;
-  border: 1px solid var(--jc-border);
-  border-radius: 8px;
+  background: rgba(10, 20, 46, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
   padding: 1rem;
 }
 
 .job-card,
 .form-card,
 .card {
-  border-color: var(--jc-border);
-  border-radius: 8px;
+  background: rgba(9, 18, 42, 0.94);
+  border-color: rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
 }
 
 .job-detail-header {
-  /* Header groups the job title and apply action without needing another component. */
   display: flex;
   justify-content: space-between;
   gap: 1.5rem;
-  background: #ffffff;
-  border: 1px solid var(--jc-border);
-  border-radius: 8px;
+  background: rgba(9, 18, 42, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
   padding: 1.5rem;
 }
 
@@ -109,27 +189,25 @@ a {
 }
 
 .dashboard-nav {
-  /* Sidebar stays visible while scrolling longer dashboard tables. */
   position: sticky;
   top: 80px;
 }
 
 .dashboard-nav .active {
-  background: var(--jc-primary);
-  border-color: var(--jc-primary);
+  background: rgba(54, 255, 92, 0.14);
+  border-color: rgba(54, 255, 92, 0.28);
 }
 
 .stat-card {
-  /* Reusable dashboard metric card. */
-  background: #ffffff;
-  border: 1px solid var(--jc-border);
-  border-radius: 8px;
+  background: rgba(9, 18, 42, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
   padding: 1rem;
 }
 
 .stat-card span {
   display: block;
-  color: var(--jc-muted);
+  color: var(--gc-muted);
   text-transform: capitalize;
 }
 
@@ -140,12 +218,10 @@ a {
 }
 
 .preline {
-  /* Preserve line breaks from textarea/database text. */
   white-space: pre-line;
 }
 
 .table-text {
-  /* Long skill lists are truncated so tables remain scannable. */
   max-width: 260px;
   white-space: nowrap;
   overflow: hidden;
@@ -153,7 +229,6 @@ a {
 }
 
 @media (max-width: 768px) {
-  /* Stack dense layouts on small screens for mobile usability. */
   .filter-bar,
   .job-detail-header {
     display: block;

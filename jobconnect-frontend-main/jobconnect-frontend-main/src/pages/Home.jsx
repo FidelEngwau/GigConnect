@@ -23,18 +23,18 @@ const Home = () => {
         <div className="container py-5">
           <div className="row align-items-center g-5">
             <div className="col-lg-7">
-              <p className="text-primary fw-semibold mb-2">JobConnect</p>
-              <h1 className="display-5 fw-bold mb-3">Find talent and career opportunities in one focused workspace.</h1>
+              <p className="text-primary fw-semibold mb-2">GigConnect</p>
+              <h1 className="display-5 fw-bold mb-3">Build your career, one gig at a time.</h1>
               <p className="lead text-secondary mb-4">
-                Employers can post openings and manage applicants while job seekers build profiles,
-                upload CVs, apply for roles, and track every application.
+                Connect with professionals who need help. Earn while gaining real-life experience
+                through verified gigs and an easy-to-use workspace.
               </p>
               <div className="d-flex flex-wrap gap-2">
                 <Link to="/jobs" className="btn btn-primary btn-lg">
-                  Browse Jobs
+                  Browse Gigs
                 </Link>
                 <Link to="/register" className="btn btn-outline-primary btn-lg">
-                  Create Account
+                  Get Started
                 </Link>
               </div>
             </div>

@@ -31,7 +31,8 @@ const Login = () => {
   return (
     <main className="auth-page">
       <form className="auth-card" onSubmit={handleSubmit}>
-        <h1 className="h3 mb-3">Login</h1>
+        <h1 className="h3 mb-2">Sign into your account</h1>
+        <p className="text-secondary small mb-3">Enter your email to sign in to GigConnect.</p>
         <AlertMessage message={error} />
         <label className="form-label">Email</label>
         <input
