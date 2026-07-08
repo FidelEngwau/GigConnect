@@ -1,6 +1,7 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { dashboardFor, roleLabel } from '../utils/roleRoutes';
+import logo from '../assets/gigconnect-logo.svg';
 
 const AppNavbar = () => {
   const { user, logout } = useAuth();
@@ -13,9 +14,10 @@ const AppNavbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+    <nav className="navbar navbar-expand-lg app-navbar border-bottom sticky-top">
       <div className="container">
         <Link className="navbar-brand fw-bold" to="/">
+          <img src={logo} alt="GigConnect logo" className="brand-logo" />
           GigConnect
         </Link>
         <button
