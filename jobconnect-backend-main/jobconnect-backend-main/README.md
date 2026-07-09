@@ -166,6 +166,46 @@ mysql -u root -p jobconnect < database/tasks_schema.sql
 mysql -u root -p jobconnect < database/tasks_seed.sql   # optional sample task
 ```
 
+Chat (task-scoped messaging, e.g. "Re: Social media graphics NGO campaign"):
+
+There is no separate "conversations" concept -- each task already has exactly
+two participants (`tasks.employer_id` and `tasks.worker_id`), so the task itself
+is the thread.
+
+REST (history, sending as a fallback, and read receipts):
+
+- `GET /api/tasks/:taskId/messages?before=<id>&limit=50` — message history, oldest-first
+- `POST /api/tasks/:taskId/messages` — send a message (`body`)
+- `PUT /api/tasks/:taskId/messages/read` — mark your unread messages in this task as read
+
+Real-time (Socket.io, same host/port as the REST API):
+
+```js
+const socket = io(API_URL, { auth: { token: jwtToken } });
+
+socket.emit('chat:join', { taskId }, (res) => {
+  // res.otherUserOnline tells you if the other participant is online right now
+});
+
+socket.emit('chat:message', { taskId, body }, (res) => { /* res.message or res.error */ });
+socket.emit('chat:typing', { taskId, isTyping: true });
+socket.emit('chat:read', { taskId });
+
+socket.on('chat:message', (message) => { /* append to the thread */ });
+socket.on('chat:typing', ({ userId, isTyping }) => { /* show/hide typing indicator */ });
+socket.on('chat:read', ({ taskId, readBy }) => { /* update read receipts */ });
+socket.on('presence:update', ({ userId, online }) => { /* "Online Now" indicator */ });
+```
+
+A connection without a valid JWT in `auth.token` is rejected before any events
+are processed, using the same JWT_SECRET as the REST API.
+
+To create the table for this feature:
+
+```bash
+mysql -u root -p jobconnect < database/chat_schema.sql
+```
+
 ## Student Exercises
 
 - Add validation for stronger passwords during registration.

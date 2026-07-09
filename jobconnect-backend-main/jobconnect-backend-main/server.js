@@ -1,6 +1,8 @@
 const path = require('path');
+const http = require('http');
 const express = require('express');
 const cors = require('cors');
+const { Server } = require('socket.io');
 require('dotenv').config();
 
 const pool = require('./config/db');
@@ -10,7 +12,9 @@ const profileRoutes = require('./routes/profileRoutes');
 const jobRoutes = require('./routes/jobRoutes');
 const applicationRoutes = require('./routes/applicationRoutes');
 const taskRoutes = require('./routes/taskRoutes');
+const messageRoutes = require('./routes/messageRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const { initChatSocket } = require('./sockets/chatSocket');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -61,6 +65,7 @@ app.use('/api/profile', profileRoutes);
 app.use('/api/jobs', jobRoutes);
 app.use('/api/applications', applicationRoutes);
 app.use('/api/tasks', taskRoutes);
+app.use('/api/tasks', messageRoutes);
 app.use('/api/admin', adminRoutes);
 
 // Any request that reached this point did not match a defined route.
@@ -79,7 +84,25 @@ app.use((error, req, res, next) => {
   res.status(500).json({ message: 'Server error', error: error.message });
 });
 
+// The plain http server wraps the Express app so Socket.io can attach to the
+// same port -- the frontend hits REST endpoints and the chat socket at the
+// same host:port, just different protocols (http:// vs ws://).
+const server = http.createServer(app);
+
+const io = new Server(server, {
+  cors: {
+    origin: allowedOrigins,
+    credentials: true
+  }
+});
+
+// Controllers reach the socket instance via req.app.get('io') so a message
+// sent through the REST fallback still broadcasts to anyone connected live.
+app.set('io', io);
+initChatSocket(io);
+
 // Start the HTTP server after all middleware and routes have been registered.
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`JobConnect API running on port ${PORT}`);
+  console.log('Socket.io chat is attached to the same port');
 });
