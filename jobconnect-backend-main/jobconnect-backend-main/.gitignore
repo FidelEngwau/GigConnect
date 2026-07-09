@@ -2,4 +2,7 @@ node_modules/
 .env
 uploads/*
 !uploads/.gitkeep
+!uploads/tasks
+uploads/tasks/*
+!uploads/tasks/.gitkeep
 npm-debug.log*

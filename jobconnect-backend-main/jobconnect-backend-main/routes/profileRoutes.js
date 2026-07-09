@@ -13,12 +13,10 @@ const router = express.Router();
 // One profile endpoint is shared because the response depends on req.user.role.
 router.get('/', protect, getProfile);
 
-// Only employers/professionals can edit employer/company profiles.
+// Only employers can edit employer/company profiles.
 router.put('/employer', protect, authorize('employer'), upsertEmployerProfile);
-router.put('/professional', protect, authorize('employer'), upsertEmployerProfile);
 
-// Only job seekers/graduates can edit seeker profiles and upload CV files.
+// Only job seekers can edit seeker profiles and upload CV files.
 router.put('/job-seeker', protect, authorize('job_seeker'), upload.single('cv'), upsertJobSeekerProfile);
-router.put('/graduate', protect, authorize('job_seeker'), upload.single('cv'), upsertJobSeekerProfile);
 
 module.exports = router;

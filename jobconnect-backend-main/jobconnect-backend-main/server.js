@@ -9,6 +9,7 @@ const userRoutes = require('./routes/userRoutes');
 const profileRoutes = require('./routes/profileRoutes');
 const jobRoutes = require('./routes/jobRoutes');
 const applicationRoutes = require('./routes/applicationRoutes');
+const taskRoutes = require('./routes/taskRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 
 const app = express();
@@ -58,8 +59,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/jobs', jobRoutes);
-app.use('/api/gigs', jobRoutes);  // Alias for frontend using new terminology
 app.use('/api/applications', applicationRoutes);
+app.use('/api/tasks', taskRoutes);
 app.use('/api/admin', adminRoutes);
 
 // Any request that reached this point did not match a defined route.
@@ -72,7 +73,7 @@ app.use((error, req, res, next) => {
   if (error.name === 'MulterError') {
     return res.status(400).json({ message: error.message });
   }
-  if (error.message && error.message.includes('Only PDF')) {
+  if (error.message && (error.message.includes('Only PDF') || error.message.includes('Only PNG'))) {
     return res.status(400).json({ message: error.message });
   }
   res.status(500).json({ message: 'Server error', error: error.message });
