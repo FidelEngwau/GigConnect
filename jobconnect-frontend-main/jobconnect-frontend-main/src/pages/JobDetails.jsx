@@ -16,7 +16,7 @@ const JobDetails = () => {
   useEffect(() => {
     // Load one gig based on the :id route parameter.
     api
-      .get(`/gigs/${id}`)
+      .get(`/jobs/${id}`)
       .then((res) => setJob(res.data.job))
       .catch((err) => setError(err.response?.data?.message || 'Could not load job'))
       .finally(() => setLoading(false));
