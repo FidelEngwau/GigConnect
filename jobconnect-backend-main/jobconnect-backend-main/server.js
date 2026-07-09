@@ -9,7 +9,6 @@ const userRoutes = require('./routes/userRoutes');
 const profileRoutes = require('./routes/profileRoutes');
 const jobRoutes = require('./routes/jobRoutes');
 const applicationRoutes = require('./routes/applicationRoutes');
-const taskRoutes = require('./routes/taskRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 
 const app = express();
@@ -48,9 +47,7 @@ app.get('/api/health', async (req, res) => {
     await pool.query('SELECT 1');
     res.json({ status: 'ok', database: 'connected' });
   } catch (error) {
-    console.warn('Database connection warning:', error.message);
-    // Return 200 anyway so frontend knows API is responsive
-    res.json({ status: 'ok', database: 'unavailable', warning: error.message });
+    res.status(500).json({ status: 'error', database: 'unavailable', error: error.message });
   }
 });
 
@@ -60,7 +57,6 @@ app.use('/api/users', userRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/jobs', jobRoutes);
 app.use('/api/applications', applicationRoutes);
-app.use('/api/tasks', taskRoutes);
 app.use('/api/admin', adminRoutes);
 
 // Any request that reached this point did not match a defined route.
@@ -73,7 +69,7 @@ app.use((error, req, res, next) => {
   if (error.name === 'MulterError') {
     return res.status(400).json({ message: error.message });
   }
-  if (error.message && (error.message.includes('Only PDF') || error.message.includes('Only PNG'))) {
+  if (error.message && error.message.includes('Only PDF')) {
     return res.status(400).json({ message: error.message });
   }
   res.status(500).json({ message: 'Server error', error: error.message });
