@@ -3,14 +3,14 @@ const pool = require('../config/db');
 const getProfile = async (req, res) => {
   try {
     // The same endpoint returns the correct profile table for the logged-in role.
-    if (req.user.role === 'employer') {
+    if (req.user.role === 'professional') {
       const [rows] = await pool.query('SELECT * FROM employer_profiles WHERE user_id = ? LIMIT 1', [
         req.user.id
       ]);
       return res.json({ profile: rows[0] || null });
     }
 
-    if (req.user.role === 'job_seeker') {
+    if (req.user.role === 'graduate') {
       const [rows] = await pool.query('SELECT * FROM job_seeker_profiles WHERE user_id = ? LIMIT 1', [
         req.user.id
       ]);

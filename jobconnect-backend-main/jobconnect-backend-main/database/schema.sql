@@ -15,7 +15,7 @@ CREATE TABLE users (
   name VARCHAR(120) NOT NULL,
   email VARCHAR(160) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
-  role ENUM('admin', 'employer', 'job_seeker') NOT NULL,
+  role ENUM('admin', 'professional', 'graduate') NOT NULL,
   status ENUM('active', 'inactive') NOT NULL DEFAULT 'active',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP

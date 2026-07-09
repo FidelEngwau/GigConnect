@@ -4,13 +4,13 @@ USE jobconnect;
 -- In a real system, each user chooses their own password during registration.
 INSERT INTO users (id, name, email, password, role, status) VALUES
 (1, 'Admin User', 'admin@jobconnect.com', '$2b$10$LNJPkbtC6ASk9j.E/35sIO7BILb7tzbSO1IoJCsL.ARCHLCSbcJQq', 'admin', 'active'),
-(2, 'Amina Tech', 'employer1@jobconnect.com', '$2b$10$LNJPkbtC6ASk9j.E/35sIO7BILb7tzbSO1IoJCsL.ARCHLCSbcJQq', 'employer', 'active'),
-(3, 'Daniel Works', 'employer2@jobconnect.com', '$2b$10$LNJPkbtC6ASk9j.E/35sIO7BILb7tzbSO1IoJCsL.ARCHLCSbcJQq', 'employer', 'active'),
-(4, 'Sarah Namatovu', 'seeker1@jobconnect.com', '$2b$10$LNJPkbtC6ASk9j.E/35sIO7BILb7tzbSO1IoJCsL.ARCHLCSbcJQq', 'job_seeker', 'active'),
-(5, 'Brian Okello', 'seeker2@jobconnect.com', '$2b$10$LNJPkbtC6ASk9j.E/35sIO7BILb7tzbSO1IoJCsL.ARCHLCSbcJQq', 'job_seeker', 'active'),
-(6, 'Grace Atim', 'seeker3@jobconnect.com', '$2b$10$LNJPkbtC6ASk9j.E/35sIO7BILb7tzbSO1IoJCsL.ARCHLCSbcJQq', 'job_seeker', 'active'),
-(7, 'Peter Kato', 'seeker4@jobconnect.com', '$2b$10$LNJPkbtC6ASk9j.E/35sIO7BILb7tzbSO1IoJCsL.ARCHLCSbcJQq', 'job_seeker', 'active'),
-(8, 'Joan Akello', 'seeker5@jobconnect.com', '$2b$10$LNJPkbtC6ASk9j.E/35sIO7BILb7tzbSO1IoJCsL.ARCHLCSbcJQq', 'job_seeker', 'active');
+(2, 'Amina Tech', 'employer1@jobconnect.com', '$2b$10$LNJPkbtC6ASk9j.E/35sIO7BILb7tzbSO1IoJCsL.ARCHLCSbcJQq', 'professional', 'active'),
+(3, 'Daniel Works', 'employer2@jobconnect.com', '$2b$10$LNJPkbtC6ASk9j.E/35sIO7BILb7tzbSO1IoJCsL.ARCHLCSbcJQq', 'professional', 'active'),
+(4, 'Sarah Namatovu', 'seeker1@jobconnect.com', '$2b$10$LNJPkbtC6ASk9j.E/35sIO7BILb7tzbSO1IoJCsL.ARCHLCSbcJQq', 'graduate', 'active'),
+(5, 'Brian Okello', 'seeker2@jobconnect.com', '$2b$10$LNJPkbtC6ASk9j.E/35sIO7BILb7tzbSO1IoJCsL.ARCHLCSbcJQq', 'graduate', 'active'),
+(6, 'Grace Atim', 'seeker3@jobconnect.com', '$2b$10$LNJPkbtC6ASk9j.E/35sIO7BILb7tzbSO1IoJCsL.ARCHLCSbcJQq', 'graduate', 'active'),
+(7, 'Peter Kato', 'seeker4@jobconnect.com', '$2b$10$LNJPkbtC6ASk9j.E/35sIO7BILb7tzbSO1IoJCsL.ARCHLCSbcJQq', 'graduate', 'active'),
+(8, 'Joan Akello', 'seeker5@jobconnect.com', '$2b$10$LNJPkbtC6ASk9j.E/35sIO7BILb7tzbSO1IoJCsL.ARCHLCSbcJQq', 'graduate', 'active');
 
 -- Two sample employers with company profile data.
 INSERT INTO employer_profiles (user_id, company_name, company_description, industry, location, phone, website) VALUES

@@ -4,8 +4,8 @@ const stats = async (req, res) => {
   try {
     // These separate count queries keep the dashboard simple and easy to read for students.
     const [[users]] = await pool.query('SELECT COUNT(*) AS total FROM users');
-    const [[employers]] = await pool.query("SELECT COUNT(*) AS total FROM users WHERE role = 'employer'");
-    const [[seekers]] = await pool.query("SELECT COUNT(*) AS total FROM users WHERE role = 'job_seeker'");
+    const [[employers]] = await pool.query("SELECT COUNT(*) AS total FROM users WHERE role = 'professional'");
+    const [[seekers]] = await pool.query("SELECT COUNT(*) AS total FROM users WHERE role = 'graduate'");
     const [[jobs]] = await pool.query('SELECT COUNT(*) AS total FROM jobs');
     const [[openJobs]] = await pool.query("SELECT COUNT(*) AS total FROM jobs WHERE status = 'open'");
     const [[applications]] = await pool.query('SELECT COUNT(*) AS total FROM applications');

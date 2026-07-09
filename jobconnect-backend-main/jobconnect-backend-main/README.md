@@ -8,11 +8,11 @@ The frontend lives in a separate repository named `jobconnect-frontend`.
 
 - How to structure an Express project with routes, controllers, middleware, and config files.
 - How JWT authentication works in a real API.
-- How role-based access control protects admin, employer, and job seeker routes.
+- How role-based access control protects admin, professional, and graduate routes.
 - How to use bcrypt so plain text passwords are never stored.
 - How to query MariaDB/MySQL with `mysql2/promise`.
 - How to upload CV files with Multer.
-- How to enforce ownership, for example employers can edit only their own jobs.
+- How to enforce ownership, for example professionals can edit only their own jobs.
 
 ## Folder Structure
 
@@ -106,10 +106,10 @@ Use these accounts after loading `database/seed.sql`:
 | Role | Email | Password |
 | --- | --- | --- |
 | Admin | `admin@jobconnect.com` | `password123` |
-| Employer | `employer1@jobconnect.com` | `password123` |
-| Employer | `employer2@jobconnect.com` | `password123` |
-| Job Seeker | `seeker1@jobconnect.com` | `password123` |
-| Job Seeker | `seeker2@jobconnect.com` | `password123` |
+| Professional | `employer1@jobconnect.com` | `password123` |
+| Professional | `employer2@jobconnect.com` | `password123` |
+| Graduate | `seeker1@jobconnect.com` | `password123` |
+| Graduate | `seeker2@jobconnect.com` | `password123` |
 
 ## Main Endpoints
 
@@ -151,13 +151,13 @@ Admin:
 
 Tasks ("Submit work" feature):
 
-- `POST /api/tasks` — employer creates a task and assigns a worker (`worker_id`, `title`, `description`, `due_at`)
-- `GET /api/tasks/my-tasks` — job seeker's assigned tasks, with `seconds_remaining` / `is_overdue`
-- `GET /api/tasks/employer/my-tasks` — employer's created tasks
+- `POST /api/tasks` — professional creates a task and assigns a worker (`worker_id`, `title`, `description`, `due_at`)
+- `GET /api/tasks/my-tasks` — graduate's assigned tasks, with `seconds_remaining` / `is_overdue`
+- `GET /api/tasks/employer/my-tasks` — professional's created tasks
 - `GET /api/tasks/:id` — task detail (owner, assigned worker, or admin)
 - `POST /api/tasks/:taskId/submissions` — worker submits completed work. Multipart form field `file` for a PNG/PDF, and/or a `canva_link` text field. At least one is required.
 - `GET /api/tasks/:taskId/submissions` — list submissions for a task
-- `PUT /api/tasks/submissions/:id/status` — employer/admin sets `submitted` / `approved` / `rejected`
+- `PUT /api/tasks/submissions/:id/status` — professional/admin sets `submitted` / `approved` / `rejected`
 
 To create the tables for this feature:
 

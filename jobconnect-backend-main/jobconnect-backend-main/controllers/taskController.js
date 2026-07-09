@@ -38,10 +38,10 @@ const createTask = async (req, res) => {
   }
 
   try {
-    // Only assign tasks to users who actually exist and are job seekers.
+    // Only assign tasks to users who actually exist and are graduates.
     const [workers] = await pool.query('SELECT id, role FROM users WHERE id = ? LIMIT 1', [worker_id]);
-    if (!workers.length || workers[0].role !== 'job_seeker') {
-      return res.status(400).json({ message: 'worker_id must belong to an existing job seeker' });
+    if (!workers.length || workers[0].role !== 'graduate') {
+      return res.status(400).json({ message: 'worker_id must belong to an existing graduate' });
     }
 
     const [result] = await pool.query(

@@ -12,14 +12,14 @@ const upload = require('../middleware/taskUploadMiddleware');
 const router = express.Router();
 
 // Employers (acting as the client/NGO) create tasks and assign them to a worker.
-router.post('/', protect, authorize('employer'), createTask);
+router.post('/', protect, authorize('professional'), createTask);
 
 // Must be declared before /:id so these fixed paths aren't treated as a task id.
-router.get('/my-tasks', protect, authorize('job_seeker'), myTasks);
-router.get('/employer/my-tasks', protect, authorize('employer'), employerTasks);
+router.get('/my-tasks', protect, authorize('graduate'), myTasks);
+router.get('/employer/my-tasks', protect, authorize('professional'), employerTasks);
 
 // Employers/admins approve or reject a specific submission.
-router.put('/submissions/:id/status', protect, authorize('employer', 'admin'), updateSubmissionStatus);
+router.put('/submissions/:id/status', protect, authorize('professional', 'admin'), updateSubmissionStatus);
 
 router.get('/:id', protect, getTask);
 
@@ -28,10 +28,10 @@ router.get('/:id', protect, getTask);
 router.post(
   '/:taskId/submissions',
   protect,
-  authorize('job_seeker'),
+  authorize('graduate'),
   upload.single('file'),
   submitWork
 );
-router.get('/:taskId/submissions', protect, authorize('employer', 'admin', 'job_seeker'), listSubmissions);
+router.get('/:taskId/submissions', protect, authorize('professional', 'admin', 'graduate'), listSubmissions);
 
 module.exports = router;

@@ -14,9 +14,9 @@ const router = express.Router();
 router.get('/', protect, getProfile);
 
 // Only employers can edit employer/company profiles.
-router.put('/employer', protect, authorize('employer'), upsertEmployerProfile);
+router.put('/employer', protect, authorize('professional'), upsertEmployerProfile);
 
 // Only job seekers can edit seeker profiles and upload CV files.
-router.put('/job-seeker', protect, authorize('job_seeker'), upload.single('cv'), upsertJobSeekerProfile);
+router.put('/job-seeker', protect, authorize('graduate'), upload.single('cv'), upsertJobSeekerProfile);
 
 module.exports = router;
