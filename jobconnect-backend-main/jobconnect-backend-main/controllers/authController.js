@@ -64,7 +64,7 @@ const register = async (req, res) => {
     const hash = await bcrypt.hash(password, 10);
     const [result] = await connection.query(
       'INSERT INTO users (name, email, password, role, status) VALUES (?, ?, ?, ?, ?)',
-      [name, email, hash, dbRole, 'active']
+      [name, email, hash, role, 'active']
     );
 
     // Create an empty role-specific profile so dashboards have a record to edit immediately.
