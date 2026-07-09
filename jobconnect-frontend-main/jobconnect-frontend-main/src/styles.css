@@ -45,11 +45,11 @@ a {
 }
 
 .navbar-brand .brand-logo {
-  width: 2rem;
-  height: 2rem;
+  width: 3.3rem;
+  height: 3.3rem;
   display: inline-flex;
   object-fit: contain;
-  filter: drop-shadow(0 0 6px rgba(54, 255, 92, 0.4));
+  filter: drop-shadow(0 0 10px rgba(54, 255, 92, 0.5));
 }
 
 .app-navbar {

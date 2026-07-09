@@ -17,7 +17,7 @@ const ApplyGig = () => {
   useEffect(() => {
     // Show the gig summary above the application form.
     api
-      .get(`/gigs/${id}`)
+      .get(`/jobs/${id}`)
       .then((res) => setJob(res.data.job))
       .catch((err) => setError(err.response?.data?.message || 'Could not load job'))
       .finally(() => setLoading(false));
