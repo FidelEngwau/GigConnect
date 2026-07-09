@@ -149,6 +149,23 @@ Admin:
 - `GET /api/admin/applications`
 - `PUT /api/admin/users/:id/status`
 
+Tasks ("Submit work" feature):
+
+- `POST /api/tasks` — employer creates a task and assigns a worker (`worker_id`, `title`, `description`, `due_at`)
+- `GET /api/tasks/my-tasks` — job seeker's assigned tasks, with `seconds_remaining` / `is_overdue`
+- `GET /api/tasks/employer/my-tasks` — employer's created tasks
+- `GET /api/tasks/:id` — task detail (owner, assigned worker, or admin)
+- `POST /api/tasks/:taskId/submissions` — worker submits completed work. Multipart form field `file` for a PNG/PDF, and/or a `canva_link` text field. At least one is required.
+- `GET /api/tasks/:taskId/submissions` — list submissions for a task
+- `PUT /api/tasks/submissions/:id/status` — employer/admin sets `submitted` / `approved` / `rejected`
+
+To create the tables for this feature:
+
+```bash
+mysql -u root -p jobconnect < database/tasks_schema.sql
+mysql -u root -p jobconnect < database/tasks_seed.sql   # optional sample task
+```
+
 ## Student Exercises
 
 - Add validation for stronger passwords during registration.
