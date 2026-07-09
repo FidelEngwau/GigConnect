@@ -4,9 +4,6 @@ const pool = require('../config/db');
 
 // Public registration intentionally allows only normal users.
 // Admin users should be created by seed data or a trusted database/admin process.
-<<<<<<< HEAD
-const allowedRoles = new Set(['professional', 'graduate']);
-=======
 const allowedRoles = new Set(['professional', 'graduate', 'employer', 'job_seeker']);
 const roleAlias = {
   professional: 'employer',
@@ -14,7 +11,6 @@ const roleAlias = {
   employer: 'employer',
   job_seeker: 'job_seeker'
 };
->>>>>>> 0171c493139441205ed9472f14a50b9a5ec4508d
 
 // JWTs store the minimum identity needed by the API: user id and role.
 const signToken = (user) =>
@@ -72,11 +68,7 @@ const register = async (req, res) => {
     );
 
     // Create an empty role-specific profile so dashboards have a record to edit immediately.
-<<<<<<< HEAD
-    if (role === 'professional') {
-=======
     if (dbRole === 'employer') {
->>>>>>> 0171c493139441205ed9472f14a50b9a5ec4508d
       await connection.query(
         'INSERT INTO employer_profiles (user_id, company_name, company_description, industry, location, phone, website) VALUES (?, ?, ?, ?, ?, ?, ?)',
         [result.insertId, `${name}'s Company`, '', '', '', '', '']
