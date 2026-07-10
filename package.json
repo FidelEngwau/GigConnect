@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "gigconnect-workspace",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "cd jobconnect-frontend-main/jobconnect-frontend-main && npm run build",
+    "build:frontend": "cd jobconnect-frontend-main/jobconnect-frontend-main && npm run build",
+    "start:backend": "cd jobconnect-backend-main/jobconnect-backend-main && npm run start",
+    "start:frontend": "cd jobconnect-frontend-main/jobconnect-frontend-main && npm run dev"
+  }
+}
