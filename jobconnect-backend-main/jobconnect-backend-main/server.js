@@ -18,11 +18,12 @@ const { initChatSocket } = require('./sockets/chatSocket');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const defaultAllowedOrigins = ['http://localhost:5173', 'http://127.0.0.1:5173'];
-const allowedOrigins = (process.env.FRONTEND_URLS || process.env.FRONTEND_URL || defaultAllowedOrigins.join(','))
+const defaultAllowedOrigins = ['http://localhost:5173', 'http://127.0.0.1:5173', 'http://localhost:5174', 'http://127.0.0.1:5174'];
+const configuredOrigins = (process.env.FRONTEND_URLS || process.env.FRONTEND_URL || defaultAllowedOrigins.join(','))
   .split(',')
   .map((origin) => origin.trim())
   .filter(Boolean);
+const allowedOrigins = [...new Set([...configuredOrigins, ...defaultAllowedOrigins])];
 
 // CORS allows the React app, which runs on another port during development,
 // to call this API from the browser. localhost and 127.0.0.1 are different
@@ -30,9 +31,23 @@ const allowedOrigins = (process.env.FRONTEND_URLS || process.env.FRONTEND_URL ||
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
+      if (!origin) {
         return callback(null, true);
       }
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      try {
+        const { hostname, protocol } = new URL(origin);
+        if (protocol === 'http:' && (hostname === 'localhost' || hostname === '127.0.0.1')) {
+          return callback(null, true);
+        }
+      } catch (error) {
+        // Ignore malformed origins and reject them below.
+      }
+
       return callback(new Error(`CORS blocked origin: ${origin}`));
     },
     credentials: true
