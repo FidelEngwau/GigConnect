@@ -220,3 +220,4 @@ mysql -u root -p jobconnect < database/chat_schema.sql
 node --check server.js
 npm audit --omit=dev
 ```
+just fixed corodination of the backend with frontend to make after the updates
